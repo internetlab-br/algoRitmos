@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Projeto AlgoRitmos</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        function carregando(){
+            document.getElementById("content").style.opacity = '0.3';
+            document.getElementById("loading").style.display = 'inline-block';
+        }
+    </script>    
+    <style>
+          .loader{
+                text-align:center;
+                color:#3B3B3B;
+                z-index: 9999;
+            }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="content" class="container">
+
+    <form action="/handle_form/" method="POST">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                        <select class="form-control" name="s_artists" aria-label="Artistas">
+                          <option value="elisoares" {% if s_artist == 'elisoares' %} selected {% endif %} >Eli Soares</option>
+                          <option value="alinebarros" {% if s_artist == 'alinebarros' %} selected {% endif %}>Aline Barros</option>
+                          <option value="calcanhotto" {% if s_artist == 'calcanhotto' %} selected {% endif %}>Adriana Calcanhotto</option>
+                          <option value="gilbertogil" {% if s_artist == 'gilbertogil' %} selected {% endif %}>Gilberto Gil</option>
+                          <option value="drikbarbosa" {% if s_artist == 'drikbarbosa' %} selected {% endif %}>Drik Barbosa</option>
+                          <option value="ricodalasam" {% if s_artist == 'ricodalasam' %} selected {% endif %}>Rico Dalasam</option>
+                          <option value="mcdricka" {% if s_artist == 'mcdricka' %} selected {% endif %}>Mc Dricka</option>
+                          <option value="mcpozedorodo" {% if s_artist == 'mcpozedorodo' %} selected {% endif %}>Mc Poze do Rodo</option>
+                          <option value="baroesdapisadinha" {% if s_artist == 'baroesdapisadinha' %} selected {% endif %}>Os Barões da Pisadinha</option>
+                          <option value="mariliamendonca" {% if s_artist == 'mariliamendonca' %} selected {% endif %}>Marília Mendonça</option>
+                          <option value="henriquejuliano" {% if s_artist == 'henriquejuliano' %} selected {% endif %}>Henrique & Juliano</option>
+                          <option value="jorgemateus" {% if s_artist == 'jorgemateus' %} selected {% endif %}>Jorge & Mateus</option>
+                          <option value="gusttavolima" {% if s_artist == 'gusttavolima' %} selected {% endif %}>Gusttavo Lima</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                        <select class="form-control" name="s_platforms" aria-label="Plataforma">
+                          <option value="deezer" {% if s_platform == 'deezer' %} selected {% endif %}>Deezer</option>
+                          <option value="spotify" {% if s_platform == 'spotify' %} selected {% endif %}>Spotify</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-secondary" onclick="carregando();">Visualizar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--music data-->
+    <div class="row">
+      <div class="table-responsive col-md-12">
+        <table class="table table-striped table-sm" style="font-size: 11px;">
+            <thead>
+              <tr>
+                <th colspan ="2">ARTISTA</th>
+                <th>MÚSICA</th>
+                <th>TOP 10?</th>
+                <th>WIKIPÉDIA</th>
+                <th>SIMILARIDADE</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in range(0, 10) %}
+              <tr>
+                <td><img height="20" width="25" src="{{lista_artistas_pic[i]}}"></td>
+                <td><a style="color: black" href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">{{ lista_artistas[i] }}</a></td>
+                <td><a style="color: black" href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">{{ lista_musicas[i] }}</a></td>
+                <td>{{ lista_top10[i] }}</td>
+                <td><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
+                <td>{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>          
+</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="loading" style="display:none;" class="loader">Carregando...</div>
+        </div>
+      </div>  
+  </div>
+  </body>
+</html>
