@@ -1,0 +1,6 @@
+Flask
+gunicorn
+spotipy
+requests
+distance
+psycopg2
