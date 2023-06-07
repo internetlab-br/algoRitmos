@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">  
     <script src="https://d3js.org/d3.v4.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,11 +20,12 @@
     <![endif]-->
   </head>
 <body>
-<div class="container">
-    <form action="/handle_form/" method="POST">
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
+<div class="algoritmo__form">
+    <form class="algoritmo__form" action="/handle_form/" method="POST">
+        <div class="algoritmo__form__row">
+            <div class="algoritmo__form__col">
+                <div class="form-group algoritmo__select">
+                  <span class="algoritmo__select-head">Artista:</span>
                         <select class="form-control" name="s_artists" aria-label="Artistas">
                           <option value="elisoares" {% if s_artist == 'elisoares' %} selected {% endif %} >Eli Soares</option>
                           <option value="alinebarros" {% if s_artist == 'alinebarros' %} selected {% endif %}>Aline Barros</option>
@@ -41,8 +43,8 @@
                         </select>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="form-group">
+            <div class="algoritmo__form__btn">
+                <div class="form-group algoritmo__btn">
                     <button type="submit" class="btn btn-outline-secondary">Atualizar</button>
                 </div>
             </div>
@@ -51,18 +53,13 @@
 
     <div class="row">
       <div class="col-md-6">
-            <p style="text-align:center">Top 10 Mais Recomendados - Spotify</p>
-      </div>
-      <div class="col-md-6">
-            <p style="text-align:center">Top 10 Mais Recomendados - Deezer</p>
-      </div>
-    </div>
+        <p class="chart-title">Top 10 Mais Recomendados - Spotify</p>
 
-    <div class="row">
-      <div class="col-md-6">
             <div id="my_dataviz_spotify"></div>
       </div>
       <div class="col-md-6">
+        <p class="chart-title">Top 10 Mais Recomendados - Deezer</p>
+
             <div id="my_dataviz_deezer"></div>
       </div>
     </div>
@@ -87,8 +84,6 @@
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
 
     // Parse the Data
     d3.csv(url + "barplot_spotify_top10.csv", function(data) {
@@ -100,16 +95,18 @@
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x).tickFormat(d3.format(".0%")).ticks(5))
         .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
+          .attr("transform", "translate(0,0)")
+          .style("text-anchor", "start");
 
       // Y axis
       var y = d3.scaleBand()
         .range([ 0, height ])
         .domain(data.map(function(d) { return d.ARTISTA_REC; }))
-        .padding(.1);
+        .padding(.5);
       svg1.append("g")
-        .call(d3.axisLeft(y))
+        .call(d3.axisRight(y))
+        .selectAll("text")
+          .attr("transform", "translate(0,-10)")
 
       //Bars
       svg1.selectAll("myRect")
@@ -119,8 +116,9 @@
         .attr("x", x(0) )
         .attr("y", function(d) { return y(d.ARTISTA_REC); })
         .attr("width", function(d) { return x(d.QTD); })
-        .attr("height", y.bandwidth() )
-        .attr("fill", "#1db954")
+        .attr("height", y.bandwidth() * .7 )
+        .attr("transform", "translate(0,5)")
+        .attr("fill", "#1BCCAE")
         .text("10");
     })
 
@@ -145,8 +143,6 @@
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
 
     // Parse the Data
     d3.csv(url + "barplot_deezer_top10.csv", function(data) {
@@ -158,27 +154,30 @@
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x).tickFormat(d3.format(".0%")).ticks(5))
         .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
+          .attr("transform", "translate(0,0)")
+          .style("text-anchor", "start");
 
       // Y axis
       var y = d3.scaleBand()
         .range([ 0, height ])
         .domain(data.map(function(d) { return d.ARTISTA_REC; }))
-        .padding(.1);
+        .padding(.5);
       svg.append("g")
-        .call(d3.axisLeft(y))
+        .call(d3.axisRight(y))
+        .selectAll("text")
+          .attr("transform", "translate(0,-10)")
 
       //Bars
       svg.selectAll("myRect")
-        .data(data)
+      .data(data)
         .enter()
         .append("rect")
         .attr("x", x(0) )
         .attr("y", function(d) { return y(d.ARTISTA_REC); })
         .attr("width", function(d) { return x(d.QTD); })
-        .attr("height", y.bandwidth() )
-        .attr("fill", "#6696fa")
+        .attr("height", y.bandwidth() * .7 )
+        .attr("transform", "translate(0,5)")
+        .attr("fill", "#F9389D")
         .text("Top 10");
     })
 
