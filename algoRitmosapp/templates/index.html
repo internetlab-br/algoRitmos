@@ -17,13 +17,199 @@
             document.getElementById("loading").style.display = 'inline-block';
         }
     </script>  
-    <link rel="stylesheet" href="style.css">  
     <style>
-          .loader{
-                text-align:center;
-                color:#3B3B3B;
-                z-index: 9999;
-            }
+      @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400%3B0,700%3B1,400%3B1,700&family=PT+Serif:ital,wght@0,400%3B0,700%3B1,400%3B1,700&display=swap');
+
+      body {
+        background-color: #F3F2EE;
+        font-family: 'PT Sans', sans-serif;
+        color: #29353A;
+
+        --color-pedra: #29353A;
+        --color-lima: #D8E20E;
+        --color-pink: #F9389D;
+        --break-m: 768px;
+      }
+
+      .algoritmo {
+        max-width: 1296px;
+        padding: 50px;
+      }
+
+      .algoritmo__select-head {
+        font-size: .75rem;
+        line-height: 1;
+      }
+
+      .algoritmo__form {
+        margin-bottom: 40px;
+      }
+
+      .algoritmo__form__row {
+        display: flex;
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+
+      .algoritmo__form__col {
+        flex: 1;
+        padding: 0 10px;
+      }
+
+      .algoritmo__form__col {
+        flex: 1;
+        padding: 0 10px;
+      }
+
+      .algoritmo__form__btn {
+        padding: 0 10px;
+      }
+
+      .algoritmo__select {
+        border-bottom: 1px solid var(--color-pedra);
+      }
+
+      .algoritmo__select select {
+        height: 35px;
+        border: none;
+        outline: 0;
+        background-color: transparent;
+        padding: 0;
+        font-size: 1.375rem;
+        line-height: 1;
+        font-weight: 700;
+        color: var(--color-pedra);
+      }
+
+      .algoritmo__select select:focus {
+        border: none;
+        outline: 0;
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+      }
+
+      .algoritmo__btn {
+        margin-top: 25px;
+        margin-bottom: 0;
+      }
+
+      .algoritmo__btn button {
+        font-size: 1.375rem;
+        line-height: 1;
+        font-weight: 700;
+        color: var(--color-pedra);
+        border: none;
+        padding: 0;
+        padding-bottom: 8px;
+        border-bottom: 4px solid var(--color-lima);
+        border-radius: 0;
+      }
+
+      .algoritmo__btn button:hover {
+        background-color: transparent;
+        color: var(--color-pedra);
+      }
+
+      .algoritmo__table {
+      }
+      .algoritmo__table .table {
+        width: 100%;
+      } 
+
+      .algoritmo__table .table thead th {
+        font-size: 1rem;
+        line-height: 1.125;
+        color: var(--color-pedra);
+        text-transform: none;
+        border: none;
+        border-bottom: 1px solid var(--color-pedra);
+        padding: 14px 0;
+      }
+
+      .algoritmo__table .table tr td {
+        font-size: 1rem;
+        line-height: 1.125;
+        color: var(--color-pedra);
+        border: none;
+        border-bottom: 1px solid var(--color-pedra);
+        padding: 14px 0;
+      }
+
+      .algoritmo__table .table tr td a {
+        color: var(--color-pedra);
+        transition: .3s;
+      }
+
+      .algoritmo__table .table tr td:nth-child(4) a {
+        box-shadow: inset 0 0 0 #F3F2EE, inset 0 -6px 0 var(--color-lima);
+      }
+
+      .algoritmo__table .table tr td a.text-danger {
+        box-shadow: inset 0 0 0 #F3F2EE, inset 0 -6px 0 var(--color-pink);
+        color: var(--color-pedra)!important;
+        transition: .3s;
+      }
+
+      .algoritmo__table .table tr td a:hover {
+        text-decoration: none;
+        opacity: 1;
+        color: black;
+        box-shadow: inset 0 0 0 #F3F2EE, inset 0 -3px 0 var(--color-lima);
+      }
+
+      .algoritmo__table .table tr td a.text-danger:hover {
+        text-decoration: none;
+        opacity: 1;
+        color: black;
+        color: black!important;
+        box-shadow: inset 0 0 0 #F3F2EE, inset 0 -3px 0 var(--color-pink);
+        transition: .3s;
+      }
+
+      .algoritmo__table .table tr td a:hover {
+        opacity: 0.7;
+      }
+
+      @media screen and (max-width: 768px) {  
+        .algoritmo__form__row {
+          flex-direction: column;
+          justify-content: flex-start;
+        }
+
+        .algoritmo__table .table thead {
+          display: none;
+        }
+
+        .algoritmo__table .table tr {
+          display: block;
+          padding: 10px 0;
+          border-bottom: 1px solid var(--color-pedra);
+        }
+        
+        .algoritmo__table .table tr:first-child {
+          border-top: 1px solid var(--color-pedra);
+        }
+        
+        .algoritmo__table .table tr td {
+          display: block;
+          border-bottom: none;
+          display: flex;
+          padding: 10px 0;
+        }
+
+        .algoritmo__table .table tr td::before {
+          content: attr(data-head);
+          font-weight: 700;
+          display: block;
+          min-width: 130px;
+        }
+      }
+      .loader{
+            text-align:center;
+            color:#3B3B3B;
+            z-index: 9999;
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
