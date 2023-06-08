@@ -88,35 +88,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td data-head="Artista"><a href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">Artista</a></td>
-                <td data-head="Música"><a href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">Música</a></td>
-                <td data-head="Top 10?">{{ lista_top10[i] }}</td>
-                <td data-head="Wikipédia"><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
-                <td data-head="Similaridade">{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
-              </tr> 
-              <tr>
-                <td data-head="Artista"><a href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">Artista</a></td>
-                <td data-head="Música"><a href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">Música</a></td>
-                <td data-head="Top 10?">{{ lista_top10[i] }}</td>
-                <td data-head="Wikipédia"><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
-                <td data-head="Similaridade">{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
-              </tr> 
-              <tr>
-                <td data-head="Artista"><a href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">Artista</a></td>
-                <td data-head="Música"><a href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">Música</a></td>
-                <td data-head="Top 10?">{{ lista_top10[i] }}</td>
-                <td data-head="Wikipédia"><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
-                <td data-head="Similaridade">{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
-              </tr> 
-              <tr>
-                <td data-head="Artista"><a href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">Artista</a></td>
-                <td data-head="Música"><a href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">Música</a></td>
-                <td data-head="Top 10?">{{ lista_top10[i] }}</td>
-                <td data-head="Wikipédia"><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
-                <td data-head="Similaridade">{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
-              </tr> 
-              <!-- {% for i in range(0, 10) %}
+              {% for i in range(0, 10) %}
               <tr>
                 <td data-head="Artista"><a href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">{{ lista_artistas[i] }}</a></td>
                 <td data-head="Música"><a href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">{{ lista_musicas[i] }}</a></td>
@@ -124,8 +96,7 @@
                 <td data-head="Wikipédia"><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
                 <td data-head="Similaridade">{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
               </tr> 
-              {% endfor %} -->
-             
+              {% endfor %}
             </tbody>
         </table>
       </div>
