@@ -16,7 +16,8 @@
             document.getElementById("content").style.opacity = '0.3';
             document.getElementById("loading").style.display = 'inline-block';
         }
-    </script>    
+    </script>  
+    <link rel="stylesheet" href="style.css">  
     <style>
           .loader{
                 text-align:center;
@@ -33,12 +34,13 @@
     <![endif]-->
   </head>
   <body>
-    <div id="content" class="container">
+    <div id="content" class="algoritmo">
 
-    <form action="/handle_form/" method="POST">
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
+    <form action="/handle_form/" method="POST" class="algoritmo__form">
+        <div class="algoritmo__form__row">
+            <div class="algoritmo__form__col">
+                <div class="form-group algoritmo__select">
+                  <span class="algoritmo__select-head">Artista:</span>
                         <select class="form-control" name="s_artists" aria-label="Artistas">
                           <option value="elisoares" {% if s_artist == 'elisoares' %} selected {% endif %} >Eli Soares</option>
                           <option value="alinebarros" {% if s_artist == 'alinebarros' %} selected {% endif %}>Aline Barros</option>
@@ -56,16 +58,17 @@
                         </select>
                 </div>
             </div>
-            <div class="col-sm-5">
-                <div class="form-group">
+            <div class="algoritmo__form__col">
+                <div class="form-group algoritmo__select">
+                  <span class="algoritmo__select-head">Plataforma:</span>
                         <select class="form-control" name="s_platforms" aria-label="Plataforma">
                           <option value="deezer" {% if s_platform == 'deezer' %} selected {% endif %}>Deezer</option>
                           <option value="spotify" {% if s_platform == 'spotify' %} selected {% endif %}>Spotify</option>
                         </select>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="form-group">
+            <div class="algoritmo__form__btn">
+                <div class="form-group algoritmo__btn">
                     <button type="submit" class="btn btn-outline-secondary" onclick="carregando();">Visualizar</button>
                 </div>
             </div>
@@ -73,27 +76,26 @@
     </form>
     <!--music data-->
     <div class="row">
-      <div class="table-responsive col-md-12">
-        <table class="table table-striped table-sm" style="font-size: 11px;">
+      <div class="table-responsive algoritmo__table col-md-12">
+        <table class="table">
             <thead>
               <tr>
-                <th colspan ="2">ARTISTA</th>
-                <th>MÚSICA</th>
-                <th>TOP 10?</th>
-                <th>WIKIPÉDIA</th>
-                <th>SIMILARIDADE</th>
+                <th>Artista</th>
+                <th>Música</th>
+                <th>Top 10?</th>
+                <th>Wikipédia</th>
+                <th>Similaridade</th>
               </tr>
             </thead>
             <tbody>
               {% for i in range(0, 10) %}
               <tr>
-                <td><img height="20" width="25" src="{{lista_artistas_pic[i]}}"></td>
-                <td><a style="color: black" href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">{{ lista_artistas[i] }}</a></td>
-                <td><a style="color: black" href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">{{ lista_musicas[i] }}</a></td>
-                <td>{{ lista_top10[i] }}</td>
-                <td><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
-                <td>{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
-              </tr>
+                <td data-head="Artista"><a href="{{lista_link_artista [i]}}" target="_blank" class="text-decoration-none">{{ lista_artistas[i] }}</a></td>
+                <td data-head="Música"><a href="{{lista_link_track [i]}}" target="_blank" class="text-decoration-none">{{ lista_musicas[i] }}</a></td>
+                <td data-head="Top 10?">{{ lista_top10[i] }}</td>
+                <td data-head="Wikipédia"><a href="{{ lista_links[i] }}" {% if lista_sims[i] == '-' %} class="text-danger" {% endif %} target="_blank">{{ lista_links_label[i] }}</a></td>
+                <td data-head="Similaridade">{{ lista_sims[i] }}{% if lista_sims[i] != '-' %}% {% endif %}</td>
+              </tr> 
               {% endfor %}
             </tbody>
         </table>
